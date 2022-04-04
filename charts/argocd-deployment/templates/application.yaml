@@ -26,6 +26,6 @@ spec:
       releaseName: {{ .name }}
       valueFiles:
   {{- range .values }}
-        - "../environments/{{ $.Values.destination.namespace }}/values/{{ . }}"
+        - "../../environments/{{ $.Values.destination.namespace }}/values/{{ . }}"
   {{- end }}
 {{- end }}
