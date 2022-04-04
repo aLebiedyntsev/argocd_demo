@@ -1,0 +1,9 @@
+source:
+  revision: "master"
+destination:
+  namespace: "default"
+applications:
+  - name: argo
+    chart: argo
+    values:
+      - values.yaml

@@ -1,0 +1,31 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.destination.namespace }}-{{ .name }}
+  namespace: default
+  labels:
+    {{- include "argocd-deployment.labels" $ | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ include "argocd-deployment.fullname" $ }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $.Values.destination.namespace | quote }}
+  source:
+    repoURL: git@github.com:aLebiedyntsev/argocd_demo.git
+    targetRevision: {{ $.Values.source.revision | quote }}
+    path: "charts/{{ .chart }}"
+    helm:
+      releaseName: {{ .name }}
+      valueFiles:
+  {{- range .values }}
+        - "../environments/{{ $.Values.destination.namespace }}/values/{{ . }}"
+  {{- end }}
+{{- end }}

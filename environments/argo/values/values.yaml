@@ -1,0 +1,53 @@
+installCRDs: false
+global:
+  securityContext:
+    runAsUser: 999
+    runAsGroup: 999
+    fsGroup: 999
+controller:
+  logLevel: debug
+  metrics:
+    enabled: false
+  resources:
+    limits:
+      cpu: 1
+      memory: 2Gi
+    requests:
+      cpu: 350m
+      memory: 1Gi
+server:
+  logLevel: debug
+  metrics:
+    enabled: false
+  ingress:
+    enabled: true
+    https: false
+    annotations:
+      kubernetes.io/ingress.class: staging
+      nginx.org/mergeable-ingress-type: minion
+  config:
+    repositories: |
+      - url: git@github.com:aLebiedyntsev/argocd_demo.git
+        sshPrivateKeySecret:
+          name: argocd-repository-credentials
+          key: clusterSshPrivateKey
+  extraArgs:
+    - --insecure
+  resources:
+    limits:
+      cpu: 200m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+dex:
+  enabled: false
+redis:
+  enabled: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi

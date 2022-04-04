@@ -1,0 +1,10 @@
+helmDefaults:
+  atomic: true
+  createNamespace: false
+releases:
+  - name: argocd-deployment-T_REVIEW_NAME
+    chart: ../../charts/argocd-deployment
+    namespace: default
+    installed: true
+    values:
+      - ./values/argocd-deployment.yaml

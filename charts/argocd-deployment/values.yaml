@@ -1,0 +1,12 @@
+
+#nameOverride: ""
+#fullnameOverride: ""
+
+source:
+  revision: ""
+
+destination:
+  server: "https://kubernetes.default.svc"
+  namespace: ""
+
+applications: []
