@@ -1,0 +1,10 @@
+helmDefaults:
+  atomic: true
+  createNamespace: true
+releases:
+  - name: argocd-deployment-demo2
+    chart: ../../charts/argocd-deployment
+    namespace: demo2
+    installed: true
+    values:
+      - ./values/argocd-deployment.yaml
