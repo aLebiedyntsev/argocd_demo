@@ -7,3 +7,7 @@ applications:
     chart: redis
     values:
       - redis.yaml
+  - name: elasticsearch
+    chart: elasticsearch
+    values:
+      - elasticsearch.yaml
