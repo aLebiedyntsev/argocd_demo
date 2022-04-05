@@ -1,0 +1,10 @@
+clusterName: "esdemo"
+
+
+resources:
+  requests:
+    cpu: "800m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
