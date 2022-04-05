@@ -2,12 +2,3 @@ source:
   revision: "main"
 destination:
   namespace: "demo2"
-applications:
-  - name: redis
-    chart: redis
-    values:
-      - redis.yaml
-  - name: elasticsearch
-    chart: elasticsearch
-    values:
-      - elasticsearch.yaml
